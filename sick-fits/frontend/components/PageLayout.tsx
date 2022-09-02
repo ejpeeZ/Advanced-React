@@ -1,4 +1,5 @@
 import { PropsWithChildren, ReactElement } from "react";
+import Header from "./Header";
 
 type PageLayoutProps = PropsWithChildren;
 
@@ -6,7 +7,8 @@ type PageLayoutProps = PropsWithChildren;
 export function PageLayout( { children }: PageLayoutProps ) {
 	return (
 		<>
-			<h2>Every layout has this</h2>
+			<Header></Header>
+			<h2>this is from the pagelayout</h2>
 			{ children }
 		</>
 	);
