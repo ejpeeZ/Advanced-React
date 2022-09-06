@@ -18,9 +18,13 @@
     "editor.formatOnSave": false
   },
   "eslint.alwaysShowStatus": true,
-  "eslint.singleQuote": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "prettier.disableLanguages": ["javascript", "javascriptreact"]
+"prettier.disableLanguages": [
+	"javascript",
+	"javascriptreact"
+],
+"editor.detectIndentation": false,
+"editor.insertSpaces": false
 }

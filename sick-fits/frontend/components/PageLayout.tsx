@@ -46,17 +46,15 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const InnerStyles = styled.div`
-	max-width: var( --max-width );
-`
+	max-width: var(--max-width);
+`;
 
-export function PageLayout( { children }: PageLayoutProps ) {
+export function PageLayout({ children }: PageLayoutProps) {
 	return (
 		<>
 			<GlobalStyles />
-			<Header></Header>
-			<InnerStyles>
-				{ children }
-			</InnerStyles>
+			<Header />
+			<InnerStyles>{children}</InnerStyles>
 		</>
 	);
 }
