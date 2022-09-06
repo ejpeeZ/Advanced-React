@@ -4,29 +4,27 @@ import {
 	InMemoryCache,
 	NormalizedCacheObject,
 } from "@apollo/client";
+import { GraphQLError } from "graphql";
 import { onError, ErrorResponse } from "@apollo/client/link/error";
 import { getDataFromTree } from "@apollo/client/react/ssr";
 import { createUploadLink } from "apollo-upload-client";
-import withApollo from "next-with-apollo";
+import withApollo, { InitApolloOptions } from "next-with-apollo";
 
 import { endpoint, prodEndpoint } from "../config";
 
 function createClient({
 	headers,
 	initialState,
-}: {
-	headers: any;
-	initialState: NormalizedCacheObject;
-}) {
+}: InitApolloOptions<NormalizedCacheObject>) {
 	return new ApolloClient({
 		link: ApolloLink.from([
 			onError(({ graphQLErrors, networkError }: ErrorResponse) => {
 				if (graphQLErrors)
-					graphQLErrors.forEach(({ message, locations, path }) =>
-						console.log(
-							`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-						)
-					);
+					graphQLErrors.forEach((graphQlError: GraphQLError) => {
+						const stringMessage = graphQLErrors.toString();
+						console.log(`[GraphQL error]: Message: ${graphQlError.message}`);
+						console.log(stringMessage);
+					});
 				if (networkError)
 					console.log(
 						`[Network error]: ${networkError}. Backend is unreachable. Is it running?`
