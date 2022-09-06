@@ -9,12 +9,15 @@
           "allowTemplateLiterals": true
         }
       ],
+	  "space-in-parens": 1,
       "prettier/prettier": [
-        "error",
+        "warn",
         {
           "singleQuote": false,
-          "useTabs": true
+          "useTabs": true,
+		  "bracketSpacing": true
         }
       ]
-    }
+    },
+	"plugins": ["html", "react-hooks"]
 }
