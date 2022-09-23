@@ -16,5 +16,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "prettier.disableLanguages": ["javascript", "javascriptreact"]
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "prettier.disableLanguages": ["javascript", "javascriptreact", "typescript"],
 }
