@@ -26,5 +26,9 @@
 	"javascriptreact"
 ],
 "editor.detectIndentation": false,
-"editor.insertSpaces": false
+"editor.insertSpaces": false,
+"editor.acceptSuggestionOnCommitCharacter": false,
+"editor.linkedEditing": true,
+"editor.guides.bracketPairs": true,
+"editor.guides.highlightActiveBracketPair": true
 }

@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start -p 7777",
     "test": "NODE_ENV=test jest --watch",
-	"lint": "eslint .",
-	"lint:fix": "eslint . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "author": "",
   "license": "ISC",
@@ -47,6 +47,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
+    "@types/apollo-upload-client": "14.1",
     "@types/node": "^16.11.57",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.18",

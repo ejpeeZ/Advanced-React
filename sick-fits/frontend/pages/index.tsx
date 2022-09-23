@@ -1,5 +1,4 @@
-import { ReactElement } from "react";
+import withData from "../lib/withData";
+import ProductsPage from "./products";
 
-export default function IndexPage(): ReactElement {
-	return <p>This is the indexpage</p>;
-}
+export default withData( ProductsPage );

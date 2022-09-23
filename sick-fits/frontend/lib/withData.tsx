@@ -25,10 +25,11 @@ function createClient({
 						console.log(`[GraphQL error]: Message: ${graphQlError.message}`);
 						console.log(stringMessage);
 					});
-				if (networkError)
+				if (networkError) {
 					console.log(
-						`[Network error]: ${networkError}. Backend is unreachable. Is it running?`
+						`[Network error]: ${networkError.message}. Backend is unreachable. Is it running?`
 					);
+				}
 			}),
 			// this uses apollo-link-http under the hood, so all the options here come from that package
 			createUploadLink({
