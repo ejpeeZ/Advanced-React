@@ -22,26 +22,27 @@ type DisplayErrorProps = {
 	error: AppoloErrorType;
 };
 
-// Necessary because TypeScript doesn't like hasOwnProperty.
-function hasOwnProperty<X extends {}, Y extends PropertyKey>(
-	obj: X,
-	prop: Y
-): obj is X & Record<Y, unknown> {
-	return obj.hasOwnProperty(prop);
-}
-
 const ApolloError = ({ error }: DisplayErrorProps) => {
-	if (error.networkError && hasOwnProperty(error.networkError, "result")) {
-		return error.networkError.result.errors.map(
-			(error: { message: string }, i: number) => (
-				<ErrorStyles key={i}>
-					<p data-test="graphql-error">
-						<strong>Shoot!</strong>
-						{error.message.replace("GraphQL error: ", "")}
-					</p>
-				</ErrorStyles>
-			)
-		);
+	if (
+		error.networkError &&
+		"result" in error.networkError &&
+		"errors" in error.networkError.result
+	) {
+		const { errors } = error.networkError.result;
+		if (Array.isArray(errors)) {
+			return (
+				<>
+					{errors.map((errorPart: { message: string }, i: number) => (
+						<ErrorStyles key={i}>
+							<p data-test="graphql-error">
+								<strong>Shoot!</strong>
+								{errorPart.message.replace("GraphQL error: ", "")}
+							</p>
+						</ErrorStyles>
+					))}
+				</>
+			);
+		}
 	}
 	return (
 		<ErrorStyles>

@@ -7,7 +7,7 @@ interface AllProductData {
 	allProducts: ProductInterface[];
 }
 
-const ALL_PRODUCTS_QUERY = gql`
+export const ALL_PRODUCTS_QUERY = gql`
 	query ALL_PRODUCTS_QUERY {
 		allProducts {
 			id
@@ -32,7 +32,6 @@ const ProductsListStyled = styled.div`
 
 export default function Products() {
 	const queryResult = useQuery<AllProductData | undefined>(ALL_PRODUCTS_QUERY);
-	console.log(queryResult.data, queryResult.error, queryResult.loading);
 	if (queryResult.loading) {
 		return <p>Loading...</p>;
 	}
@@ -51,4 +50,5 @@ export default function Products() {
 			</div>
 		);
 	}
+	return null;
 }

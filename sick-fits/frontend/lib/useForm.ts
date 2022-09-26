@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-type HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => void;
+type HandleChange = (
+	e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+) => void;
 
 interface UseFormReturn<T> {
 	inputs: T;
@@ -10,19 +12,20 @@ interface UseFormReturn<T> {
 }
 
 export default function useForm<
-	T extends Record<string, string | number | readonly string[]>
+	T extends Record<string, string | number | File>
 >(initial: T): UseFormReturn<T> {
 	const [inputs, setInputs] = useState(initial);
 
-	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+	function handleChange(
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) {
 		const { name, type, value } = e.target;
-		let parsedValue: string | number = value;
+		let parsedValue: string | number | File = value;
 
 		if (type === "number") {
 			parsedValue = parseInt(value, 10);
-		} else if (type === "file") {
-			console.log(e);
-			parsedValue = e.target.files?.[0]?.name || "";
+		} else if (type === "file" && "files" in e.target) {
+			[parsedValue] = e.target.files ? e.target.files : [""];
 		}
 
 		setInputs({
